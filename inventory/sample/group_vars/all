@@ -1,0 +1,3 @@
+user: {name: admin, uid: 1000, groups: [wheel]}
+timezone: "Asia/Kolkata"
+sys_packages: ['curl', 'vim', 'git']

@@ -1,0 +1,48 @@
+---
+- name: "Set Hostnames"
+  hostname:
+    name: "{{ new_hostname }}"
+
+- name: "Set Timezone"
+  timezone:
+    name: "{{ timezone }}"
+
+- name: "Update system"
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: "Install Required Packages"
+  apt:
+    name: "{{sys_packages}}"
+    state: latest
+
+- name: "Set VIM as default"
+  alternatives:
+    name: editor
+    path: /usr/bin/vim.basic
+
+- name: "Make sure we have a wheel group"
+  group:
+    name: wheel
+    state: present
+
+- name: "Create User"
+  user:
+    name: "{{user.name}}"
+    uid: "{{user.uid}}"
+    append: yes
+    groups: "{{user.groups}}"
+    generate_ssh_key: yes
+    #ssh_key_comment:
+    ssh_key_type: ecdsa
+    ssh_key_bits: 521
+    shell: /bin/bash
+
+- name: "Allow sudo group to have passwordless sudo"
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
