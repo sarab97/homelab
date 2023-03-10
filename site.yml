@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: yes
+  tag: initial
+  roles:
+    - initial

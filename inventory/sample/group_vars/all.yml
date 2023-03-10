@@ -1,0 +1,19 @@
+user: {name: admin, uid: 1000, groups: [wheel]}
+timezone: "Asia/Kolkata"
+sys_packages: ['curl', 'vim', 'git']
+
+
+
+k3s_version: v1.26.0+k3s1
+
+apiserver_endpoint: "10.0.40.10"
+
+k3s_token: "this_is_random_secure_string"
+
+
+
+# image tag for kube-vip
+kube_vip_tag_version: "v0.5.7"
+kube_vip_cc_tag_version: "v0.0.4"
+
+vip_lb_ip_range: "10.0.40.60-10.0.40.100"
