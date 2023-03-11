@@ -1,10 +1,13 @@
 [master]
-10.50.40.11 new_hostname=control-01
-10.50.40.12 new_hostname=control-02
-10.50.40.13 new_hostname=control-03
+10.0.40.11 new_hostname=control-01
+10.0.40.12 new_hostname=control-02
+10.0.40.13 new_hostname=control-03
 
 [worker]
-10.50.40.14 new_hostname=worker-01
-10.50.40.15 new_hostname=worker-02
-10.50.40.16 new_hostname=worker-03
+10.0.40.14 new_hostname=worker-01
+10.0.40.15 new_hostname=worker-02
+10.0.40.16 new_hostname=worker-03
 
+[nodes:children]
+master
+worker

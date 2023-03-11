@@ -1,0 +1,16 @@
+---
+
+- hosts: nodes
+  become: yes
+  roles:
+    - role: k3s/pre
+
+- hosts: master
+  become: yes
+  roles:
+    - role: k3s/master
+
+- hosts: worker
+  become: yes
+  roles:
+    - role: k3s/worker
