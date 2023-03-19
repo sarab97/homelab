@@ -1,0 +1,30 @@
+---
+- name: Disable and stop k3s
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  failed_when: false
+  with_items:
+    - k3s
+    - k3s-master
+    - k3s-node
+    - k3s-init
+
+- name: Delete k3s related files
+  file:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - /usr/local/bin/k3s
+    - "{{ systemd_dir }}/k3s-master.service"
+    - "{{ systemd_dir }}/k3s-node.service"
+    - "{{ systemd_dir }}/k3s.service"
+    - "{{ systemd_dir }}/k3s-init.service"
+    - /etc/rancher/
+    - /var/lib/kubelet
+    - /var/lib/rancher/
+
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: yes
