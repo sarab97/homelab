@@ -1,0 +1,7 @@
+---
+
+- name: Copy kured manifest to first control
+  template:
+    src: "kured.yaml.j2"
+    dest: "/var/lib/rancher/k3s/server/manifests/kured.yaml"
+  when: ansible_hostname == hostvars[groups['control'][0]]['ansible_hostname']

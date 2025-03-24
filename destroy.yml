@@ -1,0 +1,11 @@
+---
+- name: Destroy k3s cluster
+  hosts: k3s_nodes
+  roles:
+    - role: k3s/destroy
+      become: true
+  post_tasks:
+    - name: Reboot and wait for node to come back up
+      become: true
+      ansible.builtin.reboot:
+        reboot_timeout: 3600

@@ -1,14 +1,14 @@
 ---
 
-- hosts: nodes
+- hosts: k3s_nodes
   become: yes
   roles:
     - role: k3s/pre
 
-- hosts: master
+- hosts: control
   become: yes
   roles:
-    - role: k3s/master
+    - role: k3s/control
 
 - hosts: worker
   become: yes

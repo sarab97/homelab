@@ -30,7 +30,7 @@
 - name: "Create User"
   user:
     name: "{{user.name}}"
-    uid: "{{user.uid}}"
+    uid: "{{ user.uid if user.uid != 0 else omit }}"
     append: yes
     groups: "{{user.groups}}"
     generate_ssh_key: yes
